@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Shoping List</string>
+    <string name="app_name">لیست خرید</string>
+    <string name="item_nav_list">لیست های خرید</string>
+    <string name="item_nav_setting">تنظیمات</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
 </resources>

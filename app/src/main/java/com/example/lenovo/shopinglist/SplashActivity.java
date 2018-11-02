@@ -2,13 +2,12 @@ package com.example.lenovo.shopinglist;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.lenovo.shopinglist.utils.BaseActivity;
-import com.example.lenovo.shopinglist.utils.MainDashboard;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AppCompatActivity {
     private Handler mWaitHandler = new Handler();
 
     @Override

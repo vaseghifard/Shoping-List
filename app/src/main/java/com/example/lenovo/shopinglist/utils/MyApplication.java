@@ -12,5 +12,6 @@ public class MyApplication extends Application {
         super.onCreate();
         appInstance=this;
         normalTypeFace=Typeface.createFromAsset(getAssets(),"ir_sans.ttf");
+
     }
 }
