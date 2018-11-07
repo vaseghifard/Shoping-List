@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     // Start home activity
-                    startActivity(new Intent(SplashActivity.this, MainDashboard.class));
+                    startActivity(new Intent(SplashActivity.this,Dashboard.class));
                     //Let's Finish Splash Activity since we don't want to show this when user press back button.
                     finish();
                 } catch (Exception ignored) {

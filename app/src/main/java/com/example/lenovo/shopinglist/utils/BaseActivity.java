@@ -15,70 +15,69 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
 import com.example.lenovo.shopinglist.R;
 import com.example.lenovo.shopinglist.custom_views.MyImageButton;
 
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener
-,NavigationView.OnNavigationItemSelectedListener
-    {
+        , NavigationView.OnNavigationItemSelectedListener {
     public Context mContext = this;
     public Activity mActivity = this;
+    Toolbar toolbar;
+    MyImageButton myImageButton;
+    NavigationView navigationView;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        // mActivity.getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
     }
+
     // create custom toolbar
     @Override
-    public void setContentView(int layoutResID)
-    {
+    public void setContentView(int layoutResID) {
         DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
         super.setContentView(fullView);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        MyImageButton myImageButton=findViewById(R.id.icon_navigation);
+        bind();
 
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //drawer.setDrawerListener(toggle);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        setSupportActionBar(toolbar);
-        myImageButton.setOnClickListener(this);
 
     }
 
-        @Override
-        public void onBackPressed() {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            if (drawer.isDrawerOpen(GravityCompat.END)) {
-                drawer.closeDrawer(GravityCompat.END);
-            } else {
-                super.onBackPressed();
-            }
-        }
+    public void bind() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        myImageButton = findViewById(R.id.icon_navigation);
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        myImageButton.setOnClickListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
     @Override
-    public void onClick(View view) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         } else {
-           drawer.openDrawer(GravityCompat.END);
+            super.onBackPressed();
         }
     }
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            return false;
+    @Override
+    public void onClick(View view) {
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
+        } else {
+            drawer.openDrawer(GravityCompat.END);
         }
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
+    }
+}
